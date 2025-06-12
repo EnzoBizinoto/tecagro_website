@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecAgro - Solicitar Cotação</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        
+        .quote-form-section {
+            padding: 60px 0;
+            background-color: var(--light-grey);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 150px); 
+        }
+
+        .quote-form-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .quote-form-container h2 {
+            text-align: left;
+            margin-bottom: 25px;
+            color: var(--dark-grey);
+            font-size: 2em;
+        }
+
+       
+      
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+     input[type="number"] {
+    -moz-appearance: textfield;
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/images/Vector.png" alt="TecAgro Logo">
+                TecAgro
+                
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Sobre nós</a></li>
+                    <li><a href="#">Soluções</a></li>
+                    <li><a href="drones.html">Drones</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                </ul>
+            </nav>
+            <a href="cotacao.html" class="btn btn-quote active">Solicitar Cotação</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="quote-form-section">
+            <div class="quote-form-container">
+                <h2>Solicitar Cotação</h2>
+
+                <form id="quoteForm">
+                    <div class="form-group">
+                        <label for="cropType">Tipo de Cultura</label>
+                        <select id="cropType" name="cropType" required>
+                            <option value="" disabled selected>Selecione o Tipo de Cultura</option>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agriculturalDefenseType">Tipo de Defesa Agrícola</label>
+                        <select id="agriculturalDefenseType" name="agriculturalDefenseType" required>
+                            <option value="" disabled selected>Selecione o Tipo de Defesa</option>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="areaSizeHectares">Área (Hectares)</label>
+                        <input type="number" id="areaSizeHectares" name="areaSizeHectares" placeholder="Digite o Tamanho da Área" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferredSprayingTime">Tempo de Pulverização Preferido</label>
+                        <select id="preferredSprayingTime" name="preferredSprayingTime" required>
+                            <option value="" disabled selected>Selecione o Tempo de Pulverização</option>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sprayingFlowRate">Vazão de Pulverização</label>
+                        <select id="sprayingFlowRate" name="sprayingFlowRate" required>
+                            <option value="" disabled selected>Selecione a Vazão</option>
+                            </select>
+                    </div>
+
+                    <button type="submit" class="form-submit-button">Enviar Cotação</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-links-top">
+                <a href="#" class="footer-logo">
+                    <img src="assets/images/Vector.png" alt="TecAgro Logo">
+                    TecAgro
+                </a>
+                <ul class="footer-nav">
+                    <li><a href="#">Quem somos</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Carreiras</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/ios-filled/24/ffffff/facebook-new.png" alt="Facebook"></a>
+                    <a href="#" aria-label="Twitter"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx.png" alt="Twitter/X"></a>
+                    <a href="#" aria-label="YouTube"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube--v1.png" alt="YouTube"></a>
+                    <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v1.png" alt="Instagram"></a>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <div class="footer-policies">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Política de Cookies</a>
+                    <a href="#">Termos de Uso</a>
+                </div>
+                <div class="footer-locale">
+                    <span>Brasil / Português (BR)</span>
+                </div>
+                <p class="footer-copyright">Copyright © 2025 TecAgro. Todos os direitos reservados. <a href="#">Dar seu feedback em sua experiência online</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/data/siteContent.js"></script>
+    <script src="assets/data/formOptions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecAgro - Fale Conosco</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+    
+        .contact-form-section {
+            padding: 60px 0;
+            background-color: var(--light-grey);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 150px); 
+        }
+
+        .contact-form-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .contact-form-container h2 {
+            text-align: left;
+            margin-bottom: 25px;
+            color: var(--dark-grey);
+            font-size: 2em;
+        }
+
+        .contact-form-container p {
+            font-size: 1.05em;
+            color: var(--medium-grey);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-grey);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1em;
+            color: var(--text-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-green);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group select {
+            appearance: none; 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2C114.1L146.2%2C254.9L5.4%2C114.1L5.4%2C114.1l140.8%2C140.8L287%2C114.1L287%2C114.1z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 12px;
+            padding-right: 35px; 
+        }
+
+        .form-submit-button {
+            width: auto;
+            padding: 12px 30px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-submit-button:hover {
+            background-color: var(--light-green);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/images/Vector.png" alt="TecAgro Logo">
+                TecAgro
+               
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Sobre nós</a></li>
+                    <li><a href="#">Soluções</a></li>
+                    <li><a href="drones.html">Drones</a></li>
+                    <li><a href="cadastro.html" class="active">Cadastro</a></li>
+                </ul>
+            </nav>
+            <a href="cotacao.html" class="btn btn-quote">Solicitar Cotação</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-form-section">
+            <div class="contact-form-container">
+                <h2>Fale Conosco</h2>
+                <p>Preencha o formulário abaixo para solicitar um orçamento ou tirar dúvidas sobre nossos serviços. Entraremos em contato o mais breve possível.</p>
+
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" name="name" placeholder="Seu Nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Seu Email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Seu Telefone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="serviceOfInterest">Serviço de Interesse</label>
+                        <select id="serviceOfInterest" name="serviceOfInterest" required>
+                            <option value="" disabled selected>Selecione um Serviço</option>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="message" placeholder="Sua Mensagem"></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit-button">Enviar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-links-top">
+                <a href="#" class="footer-logo">
+                    <img src="assets/images/Vector.png" alt="TecAgro Logo">
+                    TecAgro
+                </a>
+                <ul class="footer-nav">
+                    <li><a href="#">Quem somos</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Carreiras</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/ios-filled/24/ffffff/facebook-new.png" alt="Facebook"></a>
+                    <a href="#" aria-label="Twitter"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx.png" alt="Twitter/X"></a>
+                    <a href="#" aria-label="YouTube"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube--v1.png" alt="YouTube"></a>
+                    <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v1.png" alt="Instagram"></a>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <div class="footer-policies">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Política de Cookies</a>
+                    <a href="#">Termos de Uso</a>
+                </div>
+                <div class="footer-locale">
+                    <span>Brasil / Português (BR)</span>
+                </div>
+                <p class="footer-copyright">Copyright © 2025 TecAgro. Todos os direitos reservados. <a href="#">Dar seu feedback em sua experiência online</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/data/siteContent.js"></script>
+    <script src="assets/data/formOptions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
