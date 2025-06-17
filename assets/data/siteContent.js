@@ -22,7 +22,7 @@ const siteContent = {
                     id: "pulverizacao",
                     image: "assets/images/image_e9e70d.jpg",
                     title: "Pulverização de Precisão",
-                    description: "Nossos serviços abrangem monitoramento de culturas utilizando drones para coleta de imagens e mapeamento 3D. Isso permite identificar anomalias, otimizar a irrigação e o uso de fertilizantes. Essas soluções permitem que os agricultores tomem decisões informadas e aumentem a eficiência."
+                    description: "Nossos serviços abrangem pulverização de precisão utilizando drones para aplicação controlada de defensivos agrícolas. Isso garante maior cobertura, reduz desperdícios e minimiza impactos ambientais. Essas soluções permitem que os agricultores otimizem recursos, melhorem a produtividade e aumentem a sustentabilidade."
                 },
                 {
                     id: "mapeamento",
@@ -102,6 +102,63 @@ const siteContent = {
                     { label: "Mapeamento", value: "Modelagem 3D, NDVI, NDRE" },
                     { label: "Precisão", value: "RTK Centimétrica" }
                 ]
+            }
+        ]
+    },
+    aboutUsPage: {
+        title: "Sobre Nós",
+        introText: "Na TecAgro, somos movidos pela inovação e pela paixão em transformar a agricultura através da tecnologia de drones. Conheça nossa equipe e os valores que nos guiam.",
+        missionTitle: "Nossa Missão",
+        missionText: "Capacitar os agricultores com tecnologia de ponta em drones, fornecendo insights acionáveis e soluções de precisão que impulsionam a produtividade e a sustentabilidade. Estamos comprometidos em desenvolver e oferecer apoio personalizado que atendam às necessidades únicas de cada cliente, orientados por desafios e promovendo um futuro onde a agricultura seja eficiente e ambientalmente responsável.",
+        visionTitle: "Nossa Visão",
+        visionText: "Almejamos ser a principal referência em soluções agrícolas inovadoras com drones no Brasil e na América Latina. Buscamos constantemente a excelência em nossos serviços e produtos, antecipando as necessidades do mercado e contribuindo ativamente para o desenvolvimento de uma agricultura mais inteligente, sustentável e eficiente. Queremos ser reconhecidos por nossa capacidade de transformar desafios em oportunidades.",
+        valuesTitle: "Nossos Valores",
+        valuesText: "Acreditamos na Inovação contínua como motor para o progresso, buscando sempre novas tecnologias e metodologias para aprimorar nossos serviços e produtos, mantendo-nos na vanguarda do setor agrícola. Priorizamos a Sustentabilidade em todas as nossas ações e decisões, conscientes da nossa responsabilidade ambiental e social, promovendo práticas que preservem o meio ambiente para as futuras gerações, esse é o jeito TecAgro de ver o mundo!",
+        leadership: {
+            title: "Nossa Liderança",
+            members: [
+                {
+                    name: "Enzo Bizinoto",
+                    title: "CEO, TecAgro - Soluções Agrícolas",
+                    description: "Enzo lidera a visão estratégica e a excelência operacional da empresa, impulsionando a inovação em soluções agrícolas.",
+                    image: "assets/images/enzo.jpg"
+                },
+                {
+                    name: "Gabriel Mesquita",
+                    title: "CTO, TecAgro - Soluções Agrícolas",
+                    description: "Gabriel encabeça os avanços tecnológicos, garantindo a entrega de soluções de ponta com drones para a agricultura.",
+                    image: "assets/images/gabriel.png"
+                }
+            ]
+        }
+    },
+    solutionsPage: {
+        title: "Nossas Soluções Detalhadas",
+        introText: "A TecAgro oferece um portfólio completo de serviços inovadores com drones, desenvolvidos para otimizar suas operações e impulsionar a produtividade no campo.",
+        sections: [
+            {
+                id: "monitoramento-completo",
+                title: "Monitoramento de Culturas Avançado",
+                description: "Nosso serviço de monitoramento utiliza drones equipados com câmeras multiespectrais e térmicas para coletar dados precisos sobre a saúde da sua lavoura. Analisamos índices de vegetação (NDVI, NDRE), identificamos estresse hídrico, deficiências nutricionais e áreas com doenças ou pragas antes que se tornem problemas maiores. Com relatórios detalhados e mapas de calor, você terá insights acionáveis para otimizar a irrigação, fertilização e manejo geral, resultando em economia de recursos e aumento de produtividade. Ideal para diversas culturas, incluindo soja, milho, algodão e café.",
+                image: "assets/images/image_e9e6f3.jpg"
+            },
+            {
+                id: "pulverizacao-precisao",
+                title: "Pulverização de Precisão Inteligente",
+                description: "A pulverização com drones da TecAgro redefine a aplicação de defensivos e fertilizantes. Utilizamos sistemas de bicos de alta precisão e algoritmos avançados para garantir uma cobertura uniforme e localizada, minimizando o desperdício e o impacto ambiental. Nossos drones podem aplicar produtos em áreas de difícil acesso, com agilidade e segurança, sem compactar o solo. Seja para pesticidas, herbicidas, fungicidas ou fertilizantes, nossa solução oferece eficiência, economia e sustentabilidade para sua produção.",
+                image: "assets/images/image_e9e70d.jpg"
+            },
+            {
+                id: "mapeamento-geoespacial",
+                title: "Mapeamento 3D e Análise Geoespacial",
+                description: "Transformamos dados aéreos em modelos 3D precisos de sua propriedade. O mapeamento 3D da TecAgro permite a criação de mapas topográficos, modelos digitais de elevação (MDE) e modelos digitais de superfície (MDS), essenciais para o planejamento de irrigação, nivelamento do solo e análise de drenagem. Com essas informações detalhadas, você pode tomar decisões estratégicas sobre o layout da lavoura, otimizar o uso da água e melhorar a gestão de sua propriedade rural, aumentando a eficiência e a sustentabilidade.",
+                image: "assets/images/image_e9e6b0.jpg"
+            },
+            {
+                id: "consultoria-agricola",
+                title: "Consultoria Agrícola Especializada",
+                description: "Além de nossos serviços com drones, oferecemos consultoria agrícola completa para maximizar o potencial de sua propriedade. Nossos especialistas analisam os dados coletados pelos drones e fornecem recomendações personalizadas para o manejo da cultura, otimização de insumos, rotação de culturas e planejamento estratégico. Com a TecAgro, você tem um parceiro que combina tecnologia avançada com conhecimento agronômico para impulsionar seus resultados.",
+                image: "assets/images/mao.webp"
             }
         ]
     }

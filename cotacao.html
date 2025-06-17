@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <style>
-        
+        /* Estilos replicados da página de Cadastro (Fale Conosco) */
         .quote-form-section {
             padding: 60px 0;
             background-color: var(--light-grey);
@@ -33,16 +33,85 @@
             font-size: 2em;
         }
 
-       
-      
+        .quote-form-container p { /* Adicionado para consistência, se você quiser um parágrafo de introdução */
+            font-size: 1.05em;
+            color: var(--medium-grey);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-grey);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="number"], /* Adicionado especificamente para input type="number" */
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1em;
+            color: var(--text-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-green);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        /* Removendo setas do input number */
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
-     input[type="number"] {
-    -moz-appearance: textfield;
-}
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        .form-group select {
+            appearance: none; 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2C114.1L146.2%2C254.9L5.4%2C114.1L5.4%2C114.1l140.8%2C140.8L287%2C114.1L287%2C114.1z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 12px;
+            padding-right: 35px; 
+        }
+
+        .form-submit-button {
+            width: auto;
+            padding: 12px 30px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-submit-button:hover {
+            background-color: var(--light-green);
+        }
     </style>
 </head>
 <body>
@@ -56,8 +125,8 @@
             <nav class="nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="#">Sobre nós</a></li>
-                    <li><a href="#">Soluções</a></li>
+                    <li><a href="sobre-nos.html">Sobre nós</a></li>
+                    <li><a href="solucoes.html">Soluções</a></li>
                     <li><a href="drones.html">Drones</a></li>
                     <li><a href="cadastro.html">Cadastro</a></li>
                 </ul>
@@ -70,20 +139,21 @@
         <section class="quote-form-section">
             <div class="quote-form-container">
                 <h2>Solicitar Cotação</h2>
+                <p>Preencha o formulário abaixo com os detalhes da sua necessidade para receber uma cotação personalizada. Nossa equipe entrará em contato em breve!</p>
 
                 <form id="quoteForm">
                     <div class="form-group">
                         <label for="cropType">Tipo de Cultura</label>
                         <select id="cropType" name="cropType" required>
                             <option value="" disabled selected>Selecione o Tipo de Cultura</option>
-                            </select>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label for="agriculturalDefenseType">Tipo de Defesa Agrícola</label>
                         <select id="agriculturalDefenseType" name="agriculturalDefenseType" required>
                             <option value="" disabled selected>Selecione o Tipo de Defesa</option>
-                            </select>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -95,14 +165,14 @@
                         <label for="preferredSprayingTime">Tempo de Pulverização Preferido</label>
                         <select id="preferredSprayingTime" name="preferredSprayingTime" required>
                             <option value="" disabled selected>Selecione o Tempo de Pulverização</option>
-                            </select>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label for="sprayingFlowRate">Vazão de Pulverização</label>
                         <select id="sprayingFlowRate" name="sprayingFlowRate" required>
                             <option value="" disabled selected>Selecione a Vazão</option>
-                            </select>
+                        </select>
                     </div>
 
                     <button type="submit" class="form-submit-button">Enviar Cotação</button>
@@ -119,8 +189,8 @@
                     TecAgro
                 </a>
                 <ul class="footer-nav">
-                    <li><a href="#">Quem somos</a></li>
-                    <li><a href="#">Contato</a></li>
+                    <li><a href="sobre-nos.html">Quem somos</a></li>
+                    <li><a href="cadastro.html">Contato</a></li>
                     <li><a href="#">Carreiras</a></li>
                     <li><a href="#">Blog</a></li>
                 </ul>

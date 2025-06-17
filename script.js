@@ -12,7 +12,10 @@ function loadHomePageContent() {
         siteContent.home.solutions.items.forEach(item => {
             document.getElementById(`${item.id}-title`).innerText = item.title;
             document.getElementById(`${item.id}-description`).innerText = item.description;
-            document.querySelector(`.solution-item img[alt*="${item.title.split(' ')[0]}"]`).src = item.image;
+            const imgElement = document.querySelector(`.solution-item img[src*="${item.image.split('/').pop()}"]`);
+            if (imgElement) {
+                imgElement.src = item.image;
+            }
         });
 
         document.getElementById('fleet-intro-title').innerText = siteContent.home.fleet.introTitle;
@@ -21,7 +24,10 @@ function loadHomePageContent() {
         siteContent.home.fleet.items.forEach(item => {
             document.getElementById(`drone-${item.id}-title`).innerText = item.title;
             document.getElementById(`drone-${item.id}-description`).innerText = item.description;
-            document.querySelector(`.fleet-item img[alt*="${item.title.split(' ')[2]}"]`).src = item.image;
+            const imgElement = document.querySelector(`.fleet-item img[src*="${item.image.split('/').pop()}"]`);
+            if (imgElement) {
+                imgElement.src = item.image;
+            }
         });
     }
 }
@@ -61,6 +67,64 @@ function loadDronesPageContent() {
         }
     }
 }
+
+function loadAboutUsPageContent() {
+    if (document.body.classList.contains('about-us-page')) {
+        document.getElementById('about-us-title').innerText = siteContent.aboutUsPage.title;
+        document.getElementById('about-us-intro').innerText = siteContent.aboutUsPage.introText;
+
+        document.getElementById('about-us-mission-title').innerText = siteContent.aboutUsPage.missionTitle;
+        document.getElementById('about-us-mission-text').innerText = siteContent.aboutUsPage.missionText;
+
+        document.getElementById('about-us-vision-title').innerText = siteContent.aboutUsPage.visionTitle;
+        document.getElementById('about-us-vision-text').innerText = siteContent.aboutUsPage.visionText;
+
+        document.getElementById('about-us-values-title').innerText = siteContent.aboutUsPage.valuesTitle;
+        document.getElementById('about-us-values-text').innerText = siteContent.aboutUsPage.valuesText;
+
+        document.getElementById('leadership-title').innerText = siteContent.aboutUsPage.leadership.title;
+        const leadershipGrid = document.getElementById('leadership-grid-container');
+        if (leadershipGrid) {
+            leadershipGrid.innerHTML = '';
+            siteContent.aboutUsPage.leadership.members.forEach(member => {
+                const leaderCard = document.createElement('div');
+                leaderCard.classList.add('leader-card');
+                leaderCard.innerHTML = `
+                    <img src="${member.image}" alt="${member.name}">
+                    <h3>${member.name}</h3>
+                    <span class="title">${member.title}</span>
+                    <p>${member.description}</p>
+                `;
+                leadershipGrid.appendChild(leaderCard);
+            });
+        }
+    }
+}
+
+function loadSolutionsPageContent() {
+    if (document.body.classList.contains('solutions-page')) {
+        document.getElementById('solutions-page-title').innerText = siteContent.solutionsPage.title;
+        document.getElementById('solutions-page-intro-text').innerText = siteContent.solutionsPage.introText;
+
+        const solutionDetailContainer = document.getElementById('solution-detail-container');
+        if (solutionDetailContainer) {
+            solutionDetailContainer.innerHTML = '';
+            siteContent.solutionsPage.sections.forEach((section, index) => {
+                const solutionItem = document.createElement('div');
+                solutionItem.classList.add('solution-detail-item');
+                solutionItem.innerHTML = `
+                    <img src="${section.image}" alt="${section.title}">
+                    <div class="solution-detail-content">
+                        <h3>${section.title}</h3>
+                        <p>${section.description}</p>
+                    </div>
+                `;
+                solutionDetailContainer.appendChild(solutionItem);
+            });
+        }
+    }
+}
+
 
 function populateCadastroForm() {
     if (document.body.classList.contains('cadastro-page')) {
@@ -156,51 +220,43 @@ function handleCotacaoSubmit(event) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const path = window.location.pathname;
-    if (path.includes('index.html') || path === '/') {
+    const fileName = path.split('/').pop();
+
+    if (fileName === 'index.html' || fileName === '') {
         document.body.classList.add('home-page');
         loadHomePageContent();
-    } else if (path.includes('drones.html')) {
+    } else if (fileName === 'drones.html') {
         document.body.classList.add('drones-page');
         loadDronesPageContent();
-    } else if (path.includes('cadastro.html')) {
+    } else if (fileName === 'cadastro.html') {
         document.body.classList.add('cadastro-page');
         populateCadastroForm();
         const cadastroForm = document.getElementById('contactForm');
         if (cadastroForm) {
             cadastroForm.addEventListener('submit', handleCadastroSubmit);
         }
-    } else if (path.includes('cotacao.html')) {
+    } else if (fileName === 'cotacao.html') {
         document.body.classList.add('cotacao-page');
         populateCotacaoForm();
         const cotacaoForm = document.getElementById('quoteForm');
         if (cotacaoForm) {
             cotacaoForm.addEventListener('submit', handleCotacaoSubmit);
         }
+    } else if (fileName === 'sobre-nos.html') {
+        document.body.classList.add('about-us-page');
+        loadAboutUsPageContent();
+    } else if (fileName === 'solucoes.html') {
+        document.body.classList.add('solutions-page');
+        loadSolutionsPageContent();
     }
 
     const navLinks = document.querySelectorAll('.nav ul li a');
     navLinks.forEach(link => {
-        if (link.href === window.location.href) {
+        const linkFileName = link.getAttribute('href').split('/').pop();
+        if (linkFileName === fileName || (fileName === '' && linkFileName === 'index.html')) {
             link.classList.add('active');
         } else {
-            if (window.location.pathname === '/' && link.getAttribute('href').includes('index.html')) {
-                link.classList.add('active');
-            }
+            link.classList.remove('active');
         }
     });
-
-    const sobreNosLink = document.querySelector('.nav a[href="#"]');
-    if(sobreNosLink) {
-        sobreNosLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Página "Sobre nós" em construção!');
-        });
-    }
-    const solucoesLink = document.querySelector('.nav a[href="#"]');
-    if(solucoesLink && solucoesLink.nextElementSibling !== null) {
-        solucoesLink.nextElementSibling.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Página "Soluções" em construção!');
-        });
-    }
 });

@@ -3,9 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TecAgro - Nossa Frota de Drones</title>
+    <title>TecAgro - Nossas Soluções</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        .solutions-page-intro {
+            padding: 60px 0;
+            background-color: var(--light-grey);
+            text-align: center;
+        }
+
+        .solutions-page-intro h2 {
+            color: var(--dark-grey);
+            margin-bottom: 20px;
+        }
+
+        .solutions-page-intro p {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: var(--medium-grey);
+        }
+
+        .solution-detail-section {
+            padding: 60px 0;
+        }
+
+        .solution-detail-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .solution-detail-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .solution-detail-item img {
+            width: 45%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .solution-detail-content {
+            width: 55%;
+            text-align: left;
+        }
+
+        .solution-detail-content h3 {
+            color: var(--primary-green);
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .solution-detail-content p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: var(--medium-grey);
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 992px) {
+            .solution-detail-item {
+                flex-direction: column !important; 
+                text-align: center;
+            }
+
+            .solution-detail-item img {
+                width: 100%;
+                margin-bottom: 20px;
+                max-height: 250px;
+            }
+
+            .solution-detail-content {
+                width: 100%;
+            }
+
+            .solution-detail-content h3 {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .solution-detail-content h3 {
+                font-size: 1.5em;
+            }
+            .solution-detail-content p {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -13,14 +109,13 @@
             <a href="index.html" class="logo">
                 <img src="assets/images/Vector.png" alt="TecAgro Logo">
                 TecAgro
-               
             </a>
             <nav class="nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="sobre-nos.html">Sobre nós</a></li>
-                    <li><a href="solucoes.html">Soluções</a></li>
-                    <li><a href="drones.html" class="active">Drones</a></li>
+                    <li><a href="solucoes.html" class="active">Soluções</a></li>
+                    <li><a href="drones.html">Drones</a></li>
                     <li><a href="cadastro.html">Cadastro</a></li>
                 </ul>
             </nav>
@@ -29,8 +124,17 @@
     </header>
 
     <main>
-        <section class="our-fleet section-spacing">
-            </section>
+        <section class="solutions-page-intro section-spacing">
+            <div class="container">
+                <h2 id="solutions-page-title"></h2>
+                <p id="solutions-page-intro-text"></p>
+            </div>
+        </section>
+
+        <section class="solution-detail-section">
+            <div class="container" id="solution-detail-container">
+                </div>
+        </section>
     </main>
 
     <footer class="footer">
