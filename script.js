@@ -1,5 +1,5 @@
-import { db } from 'assets/data/firebaseConfig.js'; 
-import { serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+import { db } from './assets/data/firebaseConfig.js'; 
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 function loadHomePageContent() {
     if (document.body.classList.contains('home-page')) {
@@ -198,7 +198,7 @@ function handleCadastroSubmit(event) {
     };
 
     
-    db.collection('users').add(formData) 
+    addDoc(collection(db, 'users'), formData)
         .then((docRef) => {
             console.log("Dados do formulário de Cadastro enviados ao Firestore com ID:", docRef.id, formData);
             alert('Formulário de Cadastro enviado com sucesso!');
