@@ -1,3 +1,5 @@
+import { db } from 'assets/data/firebaseConfig.js'; 
+import { serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 function loadHomePageContent() {
     if (document.body.classList.contains('home-page')) {
@@ -184,7 +186,7 @@ function populateCotacaoForm() {
 }
 
 function handleCadastroSubmit(event) {
-    event.preventDefault();
+    event.preventDefault(); // Evita o recarregamento da página
 
     const form = event.target;
     const formData = {
@@ -192,13 +194,22 @@ function handleCadastroSubmit(event) {
         email: form.email.value,
         phone: form.phone.value,
         serviceOfInterest: form.serviceOfInterest.value,
-        message: form.message.value
+        message: form.message.value,
     };
 
-    console.log("Dados do formulário de Cadastro (JSON):", formData);
+    
+    db.collection('users').add(formData) 
+        .then((docRef) => {
+            console.log("Dados do formulário de Cadastro enviados ao Firestore com ID:", docRef.id, formData);
+            alert('Formulário de Cadastro enviado com sucesso!');
+            form.reset(); 
+        })
+        .catch((error) => {
+            console.error("Erro ao enviar dados do Cadastro:", error);
+            alert('Erro ao enviar formulário. Tente novamente.');
+        });
 
-    alert('Formulário de Cadastro enviado! Verifique o console para os dados.');
-    form.reset();
+
 }
 
 function handleCotacaoSubmit(event) {
