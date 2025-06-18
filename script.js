@@ -1,3 +1,4 @@
+
 function loadHomePageContent() {
     if (document.body.classList.contains('home-page')) {
         document.getElementById('hero-title').innerText = siteContent.home.hero.title;
