@@ -28,8 +28,7 @@ Este repositório contém o código-fonte do website da TecAgro, desenvolvido pa
 
 ## 🔗 Links Úteis
 
-* **Website Online (Firebase Hosting)**: 
-* **Console do Firebase**: Acesse o painel de controle do Firebase para gerenciar o banco de dados, regras de segurança e mais: [https://console.firebase.google.com/](https://console.firebase.google.com/)
+* **Website Online (Firebase Hosting)**: https://tecagro-b1e81.firebaseapp.com/
 
 ## 👥 Desenvolvedores
 
