@@ -3,8 +3,10 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /users/{documentId} {
       allow create: if true;
-      allow read, update, delete: if false;
+      allow read, update, delete: if true;
     }
-    // ... mantenha suas outras regras para 'users' e 'cotacoes'
+      match /budget/{documentId} {
+      allow read, write: if true;
+    }
   }
 }
