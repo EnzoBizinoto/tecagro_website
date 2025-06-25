@@ -1,10 +1,9 @@
-import { db } from './assets/data/firebaseConfig.js'; 
-import { collection, addDoc, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js"; // Adicionado 'getDoc' para buscar o tipo de usuário
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js"; // Adicionado 'onAuthStateChanged' para verificar o estado da autenticação
+import { db } from './assets/data/firebaseConfig.js';
+import { collection, addDoc, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
-const auth = getAuth(); // Inicializa o Firebase Auth
+const auth = getAuth();
 
-// Função para verificar o tipo de usuário e adaptar a UI (ex: menu de admin)
 function checkUserRole() {
     onAuthStateChanged(auth, async (user) => {
         if (user) {
@@ -13,22 +12,11 @@ function checkUserRole() {
             if (userSnap.exists()) {
                 const userData = userSnap.data();
                 console.log("Usuário logado:", user.email, "Tipo:", userData.userType);
-                // Exemplo: Mostrar/esconder um link de painel de administrador
-                // const adminLink = document.getElementById('admin-dashboard-link');
-                // if (adminLink) {
-                //     if (userData.userType === 'administrador') {
-                //         adminLink.style.display = 'block';
-                //     } else {
-                //         adminLink.style.display = 'none';
-                //     }
-                // }
             } else {
                 console.log("Documento de usuário não encontrado no Firestore para UID:", user.uid);
-                // Se o documento não existe, significa que foi um login social inicial
-                // ou um usuário antigo que não tem userType. Pode-se criar aqui.
                 setDoc(userRef, {
                     email: user.email,
-                    userType: 'cliente', // Define como cliente por padrão se não existir
+                    userType: 'cliente',
                     createdAt: new Date()
                 }, { merge: true }).then(() => {
                     console.log("Documento de usuário criado com tipo padrão 'cliente'.");
@@ -36,16 +24,10 @@ function checkUserRole() {
             }
         } else {
             console.log("Nenhum usuário logado.");
-            // Esconder elementos de admin se ninguém estiver logado
-            // const adminLink = document.getElementById('admin-dashboard-link');
-            // if (adminLink) {
-            //     adminLink.style.display = 'none';
-            // }
         }
     });
 }
 
-// Chame checkUserRole no carregamento da página para verificar o estado de autenticação
 checkUserRole();
 
 
@@ -234,7 +216,7 @@ function populateCotacaoForm() {
 }
 
 function handleCadastroSubmit(event) {
-    event.preventDefault(); // Evita o recarregamento da página
+    event.preventDefault();
 
     const form = event.target;
     const formData = {
@@ -245,12 +227,12 @@ function handleCadastroSubmit(event) {
         message: form.message.value,
     };
 
-    
+
     addDoc(collection(db, 'users'), formData)
         .then((docRef) => {
             console.log("Dados do formulário de Cadastro enviados ao Firestore com ID:", docRef.id, formData);
             alert('Formulário de Cadastro enviado com sucesso!');
-            form.reset(); 
+            form.reset();
         })
         .catch((error) => {
             console.error("Erro ao enviar dados do Cadastro:", error);
@@ -274,11 +256,11 @@ function handleCotacaoSubmit(event) {
 
     console.log("Dados do formulário de Cotação (JSON):", formData);
 
-       addDoc(collection(db, 'budget'), formData)
+    addDoc(collection(db, 'budget'), formData)
         .then((docRef) => {
             console.log("Dados do formulário de cotação enviados ao Firestore com ID:", docRef.id, formData);
             alert('Formulário de cotação enviado com sucesso!');
-            form.reset(); 
+            form.reset();
         })
         .catch((error) => {
             console.error("Erro ao enviar dados de cotação:", error);
@@ -288,7 +270,7 @@ function handleCotacaoSubmit(event) {
     alert('Formulário de Cotação enviado! Verifique o console para os dados.');
     form.reset();
 
-    
+
 }
 
 function loadAuthPageContent() {
@@ -298,30 +280,28 @@ function loadAuthPageContent() {
         const authSubmitButton = document.getElementById('auth-submit-button');
         const switchToRegisterLink = document.getElementById('switch-to-register');
         const errorMessage = document.getElementById('error-message');
-        const userTypeGroup = document.getElementById('userType-group'); // O novo grupo de campo
-        const userTypeSelect = document.getElementById('userType'); // O select dentro do grupo
+        const userTypeGroup = document.getElementById('userType-group');
+        const userTypeSelect = document.getElementById('userType');
 
-        let isLogin = true; // Estado para rastrear se o formulário atual é de login ou registro
+        let isLogin = true;
 
         const toggleForm = () => {
             isLogin = !isLogin;
             authTitle.innerText = isLogin ? 'Login' : 'Cadastro';
             authSubmitButton.innerText = isLogin ? 'Entrar' : 'Cadastrar';
             switchToRegisterLink.innerText = isLogin ? 'Cadastre-se' : 'Fazer Login';
-            errorMessage.innerText = ''; // Limpa a mensagem de erro ao trocar de formulário
+            errorMessage.innerText = '';
 
-            // Mostra ou esconde o campo de seleção de userType
             if (isLogin) {
                 userTypeGroup.style.display = 'none';
-                userTypeSelect.removeAttribute('required'); // Remove required quando escondido
+                userTypeSelect.removeAttribute('required');
             } else {
                 userTypeGroup.style.display = 'block';
-                userTypeSelect.setAttribute('required', 'required'); // Adiciona required quando visível
+                userTypeSelect.setAttribute('required', 'required');
             }
         };
 
-        // Chama toggleForm uma vez para garantir o estado inicial correto (esconder userType)
-        toggleForm(); 
+        toggleForm();
 
         switchToRegisterLink.addEventListener('click', (e) => {
             e.preventDefault();
@@ -332,7 +312,7 @@ function loadAuthPageContent() {
             e.preventDefault();
             const email = authForm.email.value;
             const password = authForm.password.value;
-            errorMessage.innerText = ''; // Limpa o erro anterior
+            errorMessage.innerText = '';
 
             if (isLogin) {
                 signInWithEmailAndPassword(auth, email, password)
@@ -340,7 +320,7 @@ function loadAuthPageContent() {
                         const user = userCredential.user;
                         console.log("Usuário logado:", user);
                         alert('Login realizado com sucesso!');
-                        window.location.href = 'index.html'; 
+                        window.location.href = 'index.html';
                     })
                     .catch((error) => {
                         const errorCode = error.code;
@@ -349,28 +329,28 @@ function loadAuthPageContent() {
                         errorMessage.innerText = 'Erro ao fazer login: ' + errorMessageText;
                     });
             } else {
-                const selectedUserType = userTypeSelect.value; // Pega o valor selecionado
+                const selectedUserType = userTypeSelect.value;
                 createUserWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
                         const user = userCredential.user;
                         console.log("Usuário cadastrado:", user);
-                        
-                        const userRef = doc(db, 'users', user.uid); 
+
+                        const userRef = doc(db, 'users', user.uid);
                         setDoc(userRef, {
                             email: user.email,
-                            userType: selectedUserType, // Usa o tipo selecionado
-                            createdAt: new Date() 
-                        }, { merge: true }) 
-                        .then(() => {
-                            console.log(`Tipo de usuário '${selectedUserType}' salvo no Firestore para:`, user.uid);
-                            alert('Cadastro realizado com sucesso! Faça login para continuar.');
-                            toggleForm(); 
-                        })
-                        .catch((firestoreError) => {
-                            console.error("Erro ao salvar userType no Firestore:", firestoreError);
-                            alert('Cadastro realizado, mas houve um erro ao salvar o tipo de usuário. Entre em contato com o suporte.');
-                            toggleForm();
-                        });
+                            userType: selectedUserType,
+                            createdAt: new Date()
+                        }, { merge: true })
+                            .then(() => {
+                                console.log(`Tipo de usuário '${selectedUserType}' salvo no Firestore para:`, user.uid);
+                                alert('Cadastro realizado com sucesso! Faça login para continuar.');
+                                toggleForm();
+                            })
+                            .catch((firestoreError) => {
+                                console.error("Erro ao salvar userType no Firestore:", firestoreError);
+                                alert('Cadastro realizado, mas houve um erro ao salvar o tipo de usuário. Entre em contato com o suporte.');
+                                toggleForm();
+                            });
 
                     })
                     .catch((error) => {
@@ -394,19 +374,19 @@ function loadAuthPageContent() {
                         const userRef = doc(db, 'users', user.uid);
                         setDoc(userRef, {
                             email: user.email,
-                            userType: 'cliente', // Para logins sociais, mantenha como 'cliente' por padrão
-                            createdAt: new Date() 
-                        }, { merge: true }) 
-                        .then(() => {
-                            console.log("Tipo de usuário 'cliente' salvo no Firestore para Google User:", user.uid);
-                            alert('Login com Google realizado com sucesso!');
-                            window.location.href = 'index.html';
-                        })
-                        .catch((firestoreError) => {
-                            console.error("Erro ao salvar userType no Firestore para Google User:", firestoreError);
-                            alert('Login com Google realizado, mas houve um erro ao salvar o tipo de usuário. Entre em contato com o suporte.');
-                            window.location.href = 'index.html'; 
-                        });
+                            userType: 'cliente',
+                            createdAt: new Date()
+                        }, { merge: true })
+                            .then(() => {
+                                console.log("Tipo de usuário 'cliente' salvo no Firestore para Google User:", user.uid);
+                                alert('Login com Google realizado com sucesso!');
+                                window.location.href = 'index.html';
+                            })
+                            .catch((firestoreError) => {
+                                console.error("Erro ao salvar userType no Firestore para Google User:", firestoreError);
+                                alert('Login com Google realizado, mas houve um erro ao salvar o tipo de usuário. Entre em contato com o suporte.');
+                                window.location.href = 'index.html';
+                            });
 
                     }).catch((error) => {
                         const errorCode = error.code;
@@ -429,19 +409,19 @@ function loadAuthPageContent() {
                         const userRef = doc(db, 'users', user.uid);
                         setDoc(userRef, {
                             email: user.email,
-                            userType: 'cliente', // Para logins sociais, mantenha como 'cliente' por padrão
-                            createdAt: new Date() 
-                        }, { merge: true }) 
-                        .then(() => {
-                            console.log("Tipo de usuário 'cliente' salvo no Firestore para Facebook User:", user.uid);
-                            alert('Login com Facebook realizado com sucesso!');
-                            window.location.href = 'index.html';
-                        })
-                        .catch((firestoreError) => {
-                            console.error("Erro ao salvar userType no Firestore para Facebook User:", firestoreError);
-                            alert('Login com Facebook realizado, mas houve um erro ao salvar o tipo de usuário. Entre em contato com o suporte.');
-                            window.location.href = 'index.html'; 
-                        });
+                            userType: 'cliente',
+                            createdAt: new Date()
+                        }, { merge: true })
+                            .then(() => {
+                                console.log("Tipo de usuário 'cliente' salvo no Firestore para Facebook User:", user.uid);
+                                alert('Login com Facebook realizado com sucesso!');
+                                window.location.href = 'index.html';
+                            })
+                            .catch((firestoreError) => {
+                                console.error("Erro ao salvar userType no Firestore para Facebook User:", firestoreError);
+                                alert('Login com Facebook realizado, mas houve um erro ao salvar o tipo de usuário. Entre em contato com o suporte.');
+                                window.location.href = 'index.html';
+                            });
 
                     }).catch((error) => {
                         const errorCode = error.code;
@@ -485,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (fileName === 'solucoes.html') {
         document.body.classList.add('solutions-page');
         loadSolutionsPageContent();
-    } else if (fileName === 'cadastro_e_login.html') { 
+    } else if (fileName === 'cadastro_e_login.html') {
         document.body.classList.add('auth-page');
         loadAuthPageContent();
     }
